@@ -1,0 +1,19 @@
+img{
+    width: 250px;
+    height: 250px;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.details{
+    padding-top: 70px;
+}
+
+button.upload{
+    margin-top: 15px;
+    margin-left: 95px;
+}
+
+buttong.edit{
+    position: relative;
+}

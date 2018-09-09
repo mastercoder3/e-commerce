@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <div class="jumbotron">
+    <h1 class="display-5">E-Com Service App</h1>
+  </div>
+
+  <h3>Register Now</h3>
+  <div class="form-group">
+    <label for=""></label>
+    <input type="email" class="form-control" name="email" aria-describedby="emailHelpId" placeholder="Enter Email" [(ngModel)]="email" >
+    <br>
+    <input type="password" class="form-control" name="password" placeholder="Enter Password" [(ngModel)]="password">
+    <br>
+    <button class="btn btn-primary" (click)="signup()">Signup</button>
+  </div>
+  <small>Already have an account?  <a href="" routerLink="/login">Login</a> </small>
+</div>
