@@ -1,3 +1,20 @@
-<p>
-  home works!
-</p>
+<div class="container-fluid">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let prod of product | async ; index as i; trackBy:trackByIndex">
+        <td scope="row">{{prod.name}}</td>
+        <td>{{prod.quantity}}</td>
+        <td>{{prod.price}}</td>
+        <td><input type="number" value="0" [(ngModel)]="order.price"><span style="margin-left: 10px;"></span> <button class="btn btn-success" (click)="add(i)">Add</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

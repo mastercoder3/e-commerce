@@ -19,9 +19,6 @@ import { AuthGaurdService } from './auth-gaurd.service';
 import { AuthService } from './auth.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileComponent } from './profile/profile.component';
-import { CloginComponent } from './clogin/clogin.component';
-import { CsignupComponent } from './csignup/csignup.component';
-import { CdashboardComponent } from './cdashboard/cdashboard.component';
 
 @NgModule({
   declarations: [
@@ -31,10 +28,7 @@ import { CdashboardComponent } from './cdashboard/cdashboard.component';
     DashboardComponent,
     HomeComponent,
     NavbarComponent,
-    ProfileComponent,
-    CloginComponent,
-    CsignupComponent,
-    CdashboardComponent
+    ProfileComponent
 
   ],
   imports: [
@@ -52,14 +46,7 @@ import { CdashboardComponent } from './cdashboard/cdashboard.component';
         {path:'', redirectTo:'home', pathMatch: 'full'},
         {path:'home', component:HomeComponent},
         {path: 'profile', component: ProfileComponent}
-      ], canActivate: [AuthGaurdService]},
-      {path: 'clogin', component: CloginComponent},
-      {path: 'csignup', component: CsignupComponent},
-      {path:'cdashboard', component: CdashboardComponent, children:[
-        {path:'', redirectTo:'home', pathMatch: 'full'},
-        {path:'home', component:HomeComponent},
-        {path: 'profile', component: ProfileComponent}
-      ], canActivate: [AuthGaurdService]},
+      ], canActivate: [AuthGaurdService]}
     ])
   ],
   providers: [AuthGaurdService, AuthService],

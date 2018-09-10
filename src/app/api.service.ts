@@ -28,26 +28,6 @@ export class ApiService {
  deleteCustomer(uid){
    return this.afs.doc('customers/'+uid).delete();
  }
-// :::::::::::::::::::::::::::::::::::::::CLIENT::::::::::::::::::::::::::::::::::::::::::::::::::::::::
- //Client
- createClient(uid, data){
-  return this.afs.doc('clients/'+uid).set(data);
- }
-
- //READ 
- getClient(uid){
-  return this.afs.doc('clients/'+uid).snapshotChanges();
-}
-
-//UPDATE 
-updateClient(uid, data){
-  return this.afs.doc('clients/'+uid).update(data);
-
-}
-
-deleteClient(uid){
-  return this.afs.doc('clients/'+uid).delete();
-}
 
 
 }
