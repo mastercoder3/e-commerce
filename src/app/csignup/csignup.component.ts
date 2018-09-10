@@ -3,14 +3,13 @@ import { ApiService } from '../api.service';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 
-@Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
-})
-export class SignupComponent implements OnInit {
 
- 
+@Component({
+  selector: 'app-csignup',
+  templateUrl: './csignup.component.html',
+  styleUrls: ['./csignup.component.css']
+})
+export class CsignupComponent implements OnInit {
 
   constructor(private api:ApiService, private auth:AuthService, private router:Router) { }
 
@@ -26,7 +25,7 @@ export class SignupComponent implements OnInit {
     this.auth.signup(this.email,this.password)
       .then(res=>{
         console.log(res);
-        this.api.createCustomer(res.user.uid, {email: this.email, password: this.password})
+        this.api.createClient(res.user.uid, {email: this.email, password: this.password})
           .then(data=>{
             if(data){
               localStorage.setItem('uid', res.user.uid);

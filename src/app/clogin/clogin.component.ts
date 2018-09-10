@@ -5,11 +5,11 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-clogin',
+  templateUrl: './clogin.component.html',
+  styleUrls: ['./clogin.component.css']
 })
-export class LoginComponent implements OnInit {
+export class CloginComponent implements OnInit {
 
   email: string='';
   password: string='';
@@ -21,18 +21,18 @@ export class LoginComponent implements OnInit {
   } 
 
   client(){
-    this.router.navigate(['/clogin']);
+    this.router.navigate(['/login']);
   }
 
   login(){
     localStorage.removeItem('uid');
     this.afAuth.login(this.email,this.password)
       .then(res => {
-        this.afs.getCustomer(res.user.uid).subscribe(data => {
+        this.afs.getClient(res.user.uid).subscribe(data => {
           if(data){
             
             localStorage.setItem('uid', res.user.uid);
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/cdashboard']);
           }
           else
             console.log('User Data Not Found');
@@ -43,4 +43,3 @@ export class LoginComponent implements OnInit {
       })
   }
 }
-

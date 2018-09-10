@@ -2,16 +2,15 @@
   <div class="jumbotron">
     <h1 class="display-5">E-Com Service App</h1>
   </div>
-  <button class="btn btn-default" (click)="client()">Client?</button>
-  <h3>Login to Continue</h3>
 
+  <h3>Register Now</h3>
   <div class="form-group">
     <label for=""></label>
     <input type="email" class="form-control" name="email" aria-describedby="emailHelpId" placeholder="Enter Email" [(ngModel)]="email" >
     <br>
     <input type="password" class="form-control" name="password" placeholder="Enter Password" [(ngModel)]="password">
     <br>
-    <button class="btn btn-primary" (click)="login()">Login</button>
+    <button class="btn btn-primary" (click)="signup()">Signup</button>
   </div>
-  <small>Don't have an account?  <a href="" routerLink="/signup">SignUp</a> </small>
+  <small>Already have an account?  <a href="" routerLink="/login">Login</a> </small>
 </div>

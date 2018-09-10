@@ -9,11 +9,11 @@ img{
     padding-top: 70px;
 }
 
-button.upload{
+#upload{
     margin-top: 15px;
     margin-left: 95px;
 }
 
-buttong.edit{
+.edit{
     position: relative;
 }
