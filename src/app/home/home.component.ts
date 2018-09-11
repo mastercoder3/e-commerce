@@ -4,6 +4,7 @@ import {AngularFirestoreDocument, AngularFirestoreCollection} from '@angular/fir
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ApiService } from './../api.service';
+import {Router} from '@angular/router';
 
 export interface Product{
   name: string,
@@ -26,31 +27,95 @@ export class HomeComponent implements OnInit {
   order={
     id: '',
     product: '',
-    quantity: Number,
-    price: Number,
+    quantity: 0,
+    price: 0,
     clientid: ''
   };
+  prods={
+    quantity: 0
+  };
 
-  constructor(private afs: AngularFirestore, private api: ApiService) { 
+  orders=[];
+
+
+  eventHandle(index, e){
+    console.log(e.target.value);
+    console.log(index);
+  }
+
+  constructor(private afs: AngularFirestore, private api: ApiService, private router: Router) { 
+    
+  }
+
+  ngOnInit() {
+    this.getData();
+  }
+
+  getData(){
     this.products = this.afs.collection<Product>('product');
     this.product = this.products.snapshotChanges().pipe(
       map(actions=> actions.map( a => {
         const data = a.payload.doc.data() as Product;
-        const id = a.payload.doc.id;
-        return {id, ...data};
+        const did = a.payload.doc.id;
+        const selectedQuantity= 0;
+        return {did,selectedQuantity, ...data};
       }))
     );
   }
 
-  ngOnInit() {
+  add(product){
+    let prod={
+      name:product.name,
+      quanity:product.selectedQuantity,
+      price:Number(product.price)*Number(product.selectedQuantity),
+      clientId:product.id,
+      customerId: localStorage.getItem('uid')
+    }
+
+    let q = Number(product.quantity);
+    let sq = Number(product.selectedQuantity);
+
+    console.log(q);
+
+    if(q>sq){
+      this.prods.quantity = q - sq;
+    }
+    else{
+      this.prods.quantity = q - q;
+      prod.price = Number(product.price)*q;
+    }
+    this.orders.push(prod);
+
+    console.log(this.orders);
+    this.update(product.did, this.prods);
   }
 
-  add(i){
-    console.log(i);
-    console.log(this.product.subscribe(data => {
-      return data;
-    }));
+  update(id,prod){
+    this.api.updateProduct(id,prod).then(res=>{
+      console.log('Updated');
+    });
   }
+
+  checkout(){
+    if(this.orders !== null)
+    this.orders.forEach(i => {
+      this.api.createOrders(i)
+      .then(res=>{
+        console.log('Added');
+      }, err=>{
+        console.log(err);
+      });
+    });
+
+    this.router.navigate(['/dashboard/billing']);
+    
+ 
+  }
+
+
+
+
+
 
   trackByIndex(index: number, prod: any): any {
     return index;

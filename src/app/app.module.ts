@@ -19,6 +19,8 @@ import { AuthGaurdService } from './auth-gaurd.service';
 import { AuthService } from './auth.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileComponent } from './profile/profile.component';
+import { BillingComponent } from './billing/billing.component';
+import { DetailesComponent } from './detailes/detailes.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { ProfileComponent } from './profile/profile.component';
     DashboardComponent,
     HomeComponent,
     NavbarComponent,
-    ProfileComponent
+    ProfileComponent,
+    BillingComponent,
+    DetailesComponent
 
   ],
   imports: [
@@ -45,7 +49,10 @@ import { ProfileComponent } from './profile/profile.component';
       {path:'dashboard', component:DashboardComponent, children:[
         {path:'', redirectTo:'home', pathMatch: 'full'},
         {path:'home', component:HomeComponent},
-        {path: 'profile', component: ProfileComponent}
+        {path: 'profile', component: ProfileComponent},
+        {path: 'billing', component: BillingComponent},
+        {path: 'details', component: DetailesComponent},
+        {path: 'details/:id', component: DetailesComponent}
       ], canActivate: [AuthGaurdService]}
     ])
   ],

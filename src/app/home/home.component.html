@@ -9,12 +9,15 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let prod of product | async ; index as i; trackBy:trackByIndex">
+      <tr *ngFor="let prod of product | async; let i=index; trackBy:trackByIndex">
         <td scope="row">{{prod.name}}</td>
         <td>{{prod.quantity}}</td>
         <td>{{prod.price}}</td>
-        <td><input type="number" value="0" [(ngModel)]="order.price"><span style="margin-left: 10px;"></span> <button class="btn btn-success" (click)="add(i)">Add</button></td>
+        <td><input type="number" value="0" [(ngModel)]="prod.selectedQuantity"><span style="margin-left: 10px;"></span> <button class="btn btn-success" (click)="add(prod)">Add</button></td>
       </tr>
     </tbody>
   </table>
+  <br>
+  <br>
+  <button class="btn btn-primary" (click)=checkout()>Check Out</button>
 </div>

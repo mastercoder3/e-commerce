@@ -29,5 +29,25 @@ export class ApiService {
    return this.afs.doc('customers/'+uid).delete();
  }
 
+//  ::::::::::::::::::::::::: Product::::::::::::::::::::::
+
+updateProduct(id,data){
+  return this.afs.doc('product/'+id).update(data);
+}
+
+createOrders(data){
+  return this.afs.collection('orders').add(data);
+}
+
+getOrders(id){
+  return this.afs.collection('orders', ref=> ref.where('customerId', '==', id)).snapshotChanges();
+}
+
+getOrderData(id){
+  return this.afs.doc('orders/'+id).valueChanges();
+}
+
+
+
 
 }

@@ -1,0 +1,20 @@
+<div class="container-fluid">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>By</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="By">
+        <td scope="row">{{details.name}}</td>
+        <td>{{details.quanity}}</td>
+        <td>{{details.price}}</td>
+        <td>{{By.name}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
