@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -21,6 +22,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { BillingComponent } from './billing/billing.component';
 import { DetailesComponent } from './detailes/detailes.component';
+import { MakePaymentComponent } from './payments/make-payment/make-payment.component';
+import { HttpModule } from '@angular/http';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +36,8 @@ import { DetailesComponent } from './detailes/detailes.component';
     NavbarComponent,
     ProfileComponent,
     BillingComponent,
-    DetailesComponent
+    DetailesComponent,
+    MakePaymentComponent
 
   ],
   imports: [
@@ -41,13 +46,17 @@ import { DetailesComponent } from './detailes/detailes.component';
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
+    HttpModule,
+    HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
       {path: '', redirectTo: 'login', pathMatch: 'full'},
+      
       {path:'login', component: LoginComponent},
       {path: 'signup', component: SignupComponent},
       {path:'dashboard', component:DashboardComponent, children:[
         {path:'', redirectTo:'home', pathMatch: 'full'},
+        {path: 'payments', component: MakePaymentComponent},
         {path:'home', component:HomeComponent},
         {path: 'profile', component: ProfileComponent},
         {path: 'billing', component: BillingComponent},

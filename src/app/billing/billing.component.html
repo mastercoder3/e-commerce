@@ -3,4 +3,11 @@
   <ul *ngFor="let o of order | async; let i=index; trackBy:trackByIndex" class="list-group">
     <li class="list-group-item" (click)="clicked(i,o)">{{o.name}}</li>
   </ul>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div *ngIf="total">
+    <button class="btn btn-success" (click)="pay()"> Bill: {{this.total}}</button>
+  </div>
 </div>

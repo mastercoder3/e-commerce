@@ -47,7 +47,10 @@ getOrderData(id){
   return this.afs.doc('orders/'+id).valueChanges();
 }
 
-
+/*
+transactions => doc id => information
+payments => userid => transactions id
+*/
 
 
 }

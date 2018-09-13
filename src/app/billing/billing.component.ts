@@ -22,6 +22,7 @@ export interface Order{
 })
 export class BillingComponent implements OnInit {
 
+  total: number;
   order: Observable<Order[]>;
   orderred: AngularFirestoreCollection<Order>;
 
@@ -32,6 +33,17 @@ export class BillingComponent implements OnInit {
       const id = a.payload.doc.id;
       return {id, ...data};
     })));
+
+   this.order.pipe(map(actions => actions.map(a=>{
+      const price = a.price;
+      return price;
+   }))).subscribe(res =>{
+     this.total = 0;
+     for(var i=0; i< res.length; i++){
+       this.total = this.total + res[i];
+     }
+   });
+   
    }
 
   ngOnInit() {
@@ -53,6 +65,10 @@ export class BillingComponent implements OnInit {
 
   trackByIndex(index: number, order: any): any {
     return index;
+  }
+
+  pay(){
+    this.router.navigate(['/dashboard/payments', {price: this.total}]);
   }
 
   

@@ -11,7 +11,8 @@ export const environment = {
     projectId: "chatapp-5d576",
     storageBucket: "chatapp-5d576.appspot.com",
     messagingSenderId: "964363324288"
-  }
+  },
+  stripeKey: 'pk_test_i6Mjxq8jwet6IoCyw8AHgz6S'
 };
 
 /*
